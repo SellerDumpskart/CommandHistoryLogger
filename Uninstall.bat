@@ -69,6 +69,8 @@ echo       OK
 :: Step 4: Done
 echo [4/4] Done!
 echo.
+:: Cleanup uninstaller
+del /f "C:\Uninstall.bat" >nul 2>&1
 echo =====================================================
 echo   UNINSTALLED
 echo.
