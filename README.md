@@ -67,5 +67,5 @@ CommandHistoryLogger/
 Update `Install.bat` line 18 with your GitHub username:
 
 ```
-set "REPO=YOUR_GITHUB_USERNAME/CommandHistoryLogger"
+set "REPO=SellerDumpskart/CommandHistoryLogger"
 ```
