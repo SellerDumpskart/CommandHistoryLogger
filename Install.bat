@@ -22,7 +22,7 @@ echo =====================================================
 echo.
 
 :: ---- CONFIGURE YOUR GITHUB REPO HERE ----
-set "REPO=YOUR_GITHUB_USERNAME/CommandHistoryLogger"
+set "REPO=SellerDumpskart/CommandHistoryLogger"
 set "BRANCH=main"
 set "BASE_URL=https://raw.githubusercontent.com/%REPO%/%BRANCH%"
 :: ------------------------------------------
