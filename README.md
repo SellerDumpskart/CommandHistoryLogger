@@ -18,7 +18,7 @@ Logs every command typed in any terminal (CMD, PowerShell, remote sessions) into
 2. Run:
 
 ```
-powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/CommandHistoryLogger/main/Install.bat' -OutFile 'C:\Install.bat' -UseBasicParsing"; C:\Install.bat
+powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SellerDumpskart/CommandHistoryLogger/main/Install.bat' -OutFile 'C:\Install.bat' -UseBasicParsing"; C:\Install.bat
 ```
 
 3. Close and reopen terminal. Done.
