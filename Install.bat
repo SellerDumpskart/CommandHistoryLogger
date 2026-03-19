@@ -36,7 +36,7 @@ echo       OK
 
 :: Step 2: Set execution policy
 echo [2/8] Setting execution policy...
-powershell.exe -NoLogo -NoProfile -Command "Set-ExecutionPolicy RemoteSigned -Scope LocalMachine -Force"
+powershell.exe -NoLogo -NoProfile -Command "Set-ExecutionPolicy RemoteSigned -Scope LocalMachine -Force -ErrorAction SilentlyContinue"
 echo       OK
 
 :: Step 3: Create temp folder
