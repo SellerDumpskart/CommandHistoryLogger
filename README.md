@@ -18,21 +18,21 @@ Logs every command typed in any terminal (CMD, PowerShell, remote sessions) into
 2. Run:
 
 ```
-powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SellerDumpskart/CommandHistoryLogger/main/Install.bat' -OutFile 'C:\Install.bat' -UseBasicParsing"; C:\Install.bat
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SellerDumpskart/CommandHistoryLogger/main/Install.bat' -OutFile 'C:\Install.bat' -UseBasicParsing"; cmd /c C:\Install.bat
 ```
 
 3. Close and reopen terminal. Done.
 
-## Manual Install
+## One-Click Uninstall
 
-1. Clone or download this repo
-2. Right-click `Install.bat` → **Run as administrator**
-3. Close and reopen terminal
+1. Open CMD or PowerShell **as Administrator**
+2. Run:
 
-## Uninstall
+```
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SellerDumpskart/CommandHistoryLogger/main/Uninstall.bat' -OutFile 'C:\Uninstall.bat' -UseBasicParsing"; cmd /c C:\Uninstall.bat
+```
 
-1. Right-click `Uninstall.bat` → **Run as administrator**
-2. Your log files are preserved in `C:\CommandHistory\`
+3. Your log files in `C:\CommandHistory\` are preserved.
 
 ## Log Locations
 
@@ -61,11 +61,3 @@ CommandHistoryLogger/
 2. **PowerShell Profile** — Dot-sources `CommandLogger.ps1` on every PS session
 3. **Prompt Logger** — Captures every command via a custom `prompt` function
 4. **Session Detection** — Walks the process tree to identify remote tools (DWAgent, MeshCentral, SSH, RDP)
-
-## After Install
-
-Update `Install.bat` line 18 with your GitHub username:
-
-```
-set "REPO=SellerDumpskart/CommandHistoryLogger"
-```
