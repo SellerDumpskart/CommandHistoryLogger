@@ -24,9 +24,6 @@ echo   - Remove CMD AutoRun registry key
 echo   - Remove CommandLogger from PowerShell profile
 echo   - Remove C:\CommandHistory\_system folder
 echo.
-echo   NOTE: Your log files in C:\CommandHistory\TXT,
-echo         HTML, CSV will NOT be deleted.
-echo.
 set /p confirm="  Continue? (Y/N): "
 if /i not "%confirm%"=="Y" (
     echo   Cancelled.
@@ -34,6 +31,8 @@ if /i not "%confirm%"=="Y" (
     exit /b 0
 )
 
+echo.
+set /p dellogs="  Also delete all log files? (Y/N): "
 echo.
 
 :: Step 1: Remove CMD AutoRun
@@ -66,21 +65,28 @@ if exist "C:\CommandHistory\_system" (
 )
 echo       OK
 
-:: Step 4: Done
-echo [4/4] Done!
+:: Step 4: Delete logs if requested
+if /i "%dellogs%"=="Y" (
+    echo [4/5] Deleting log files...
+    if exist "C:\CommandHistory" rmdir /s /q "C:\CommandHistory" >nul 2>&1
+    echo       OK
+    echo [5/5] Done!
+) else (
+    echo [4/4] Done!
+)
+
 echo.
 :: Cleanup uninstaller
 del /f "C:\Uninstall.bat" >nul 2>&1
 echo =====================================================
 echo   UNINSTALLED
-echo.
-echo   Your logs are still in:
-echo     C:\CommandHistory\TXT\
-echo     C:\CommandHistory\HTML\
-echo     C:\CommandHistory\CSV\
-echo.
-echo   To delete logs too, manually run:
-echo     rmdir /s /q "C:\CommandHistory"
+if /i not "%dellogs%"=="Y" (
+    echo.
+    echo   Your logs are still in:
+    echo     C:\CommandHistory\TXT\
+    echo     C:\CommandHistory\HTML\
+    echo     C:\CommandHistory\CSV\
+)
 echo =====================================================
 echo.
 pause
