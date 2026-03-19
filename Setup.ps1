@@ -21,7 +21,7 @@ Copy-Item "$src\system\CommandLogger.ps1" "$system\CommandLogger.ps1" -Force
 Write-Host "      OK" -ForegroundColor Green
 
 Write-Host "[3/6] Setting execution policy..." -ForegroundColor Yellow
-Set-ExecutionPolicy RemoteSigned -Scope LocalMachine -Force
+Set-ExecutionPolicy RemoteSigned -Scope LocalMachine -Force -ErrorAction SilentlyContinue
 Write-Host "      OK" -ForegroundColor Green
 
 Write-Host "[4/6] Installing PowerShell profile..." -ForegroundColor Yellow
