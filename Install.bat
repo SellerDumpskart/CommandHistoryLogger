@@ -98,7 +98,8 @@ rmdir /s /q "%TEMP_DIR%" >nul 2>&1
 echo       OK
 
 echo [8/8] Installation complete!
-echo.
+:: Cleanup installer
+del /f "C:\Install.bat" >nul 2>&1
 echo =====================================================
 echo   DONE -- Close and reopen terminal to start logging
 echo   Logs saved to: C:\CommandHistory\
