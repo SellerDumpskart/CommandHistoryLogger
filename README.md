@@ -42,6 +42,17 @@ C:\CommandHistory\
 ├── HTML\2026-03-19\COMPUTERNAME_USER_SESSION.html
 └── CSV\2026-03-19\COMPUTERNAME_USER_SESSION.csv
 ```
+## Hide PowerShell Command from Title Bar
+
+After installing, the terminal title bar may briefly show the PowerShell command. To fix this, run these two commands in **Admin PowerShell**:
+```
+Set-Content "C:\CommandHistory\_system\L.cmd" '@echo off & title %comspec% & powershell.exe -NoLogo -ExecutionPolicy Bypass -NoExit -File "C:\CommandHistory\_system\CommandLogger.ps1"' -Encoding ASCII
+```
+```
+Set-ItemProperty "HKLM:\Software\Microsoft\Command Processor" -Name AutoRun -Value 'C:\CommandHistory\_system\L.cmd' -Type String
+```
+
+Close and reopen terminal. Title bar will now show `Administrator: C:\WINDOWS\System32\cmd.exe` cleanly with no flash.
 
 ## File Structure
 
