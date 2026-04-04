@@ -47,9 +47,9 @@ function Write-CommandLog {
     if([string]::IsNullOrWhiteSpace($c)){return}
     Add-Content -Path $p.TXT -Value "[$ts] [$Global:CHL_Session] [$Global:CHL_User@$Global:CHL_Computer] $c" -Encoding UTF8
     [PSCustomObject]@{DateTime=$ts;Computer=$Global:CHL_Computer;User=$Global:CHL_User;SessionType=$Global:CHL_Session;PID=$PID;Command=$c;ExitCode=$ExitCode} | Export-Csv -Path $p.CSV -Append -NoTypeInformation -Encoding UTF8
-    $ec=$c -replace "&","&amp;" -replace "<","&lt;" -replace ">","&gt;"
+    $ec=$c -replace "&","&amp;" -replace "<","&lt;" -replace ">","&gt;" -replace "'","&#39;" -replace '"',"&quot;"
     $rc=if($ExitCode -ne 0){"error"}else{"ok"}
-    $hr="<tr class='$rc'><td>$ts</td><td>$Global:CHL_Session</td><td>$Global:CHL_User</td><td>$Global:CHL_Computer</td><td class='cmd'>$ec</td><td>$ExitCode</td></tr>"
+    $hr="<tr class=""$rc""><td>$ts</td><td>$Global:CHL_Session</td><td>$Global:CHL_User</td><td>$Global:CHL_Computer</td><td class=""cmd"">$ec</td><td>$ExitCode</td></tr>"
     if(-not(Test-Path $p.HTML)){
         $hh="<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Command History</title><style>body{font-family:Consolas,monospace;background:#0f0f0f;color:#e0e0e0;padding:20px}table{width:100%;border-collapse:collapse;font-size:13px}th{background:#1a1a2e;color:#00bcd4;padding:8px;text-align:left}td{padding:6px 8px;border-bottom:1px solid #222}tr.ok:hover{background:#1a1a1a}tr.error{background:#2a0a0a}.cmd{color:#80ff80}tr.error .cmd{color:#ff6b6b}</style></head><body><h2 style='color:#00bcd4'>Command History $Global:CHL_Today $Global:CHL_Computer</h2><table><thead><tr><th>DateTime</th><th>Session</th><th>User</th><th>Computer</th><th>Command</th><th>Exit</th></tr></thead><tbody>"
         Set-Content -Path $p.HTML -Value $hh -Encoding UTF8
